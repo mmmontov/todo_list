@@ -62,7 +62,7 @@ namespace todo_list
         {
             TodoItem task = new TodoItem { Text = text, Date = date, IsDone = false };
             tasks.Add(task);
-            tasksList.Items.Add(task);
+            UpdateTaskList();
             SaveTasksToFile();
         }
 
