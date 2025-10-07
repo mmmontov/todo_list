@@ -215,7 +215,7 @@ namespace todo_list
 
         public override string ToString()
         {
-            string isDone = IsDone ? "✔ " : "";
+            string isDone = IsDone ? "🗹 " : "▢ ";
             return $"{isDone} {Date: HH:mm} - {Text}";
         }
     }
