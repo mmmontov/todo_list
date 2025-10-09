@@ -39,6 +39,11 @@ namespace todo_list
                 MessageBox.Show("Введите текст задачи");
                 return;
             }
+            if (taskName == "")
+            {
+                MessageBox.Show("Введите название задачи");
+                return;
+            }
             DialogResult = DialogResult.OK;
         }
 
@@ -68,14 +73,5 @@ namespace todo_list
             closeButton.ForeColor = Color.Red;
         }
 
-        private void taskHour_ValueChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void taskTitleTextBox_TextChanged(object sender, EventArgs e)
-        {
-
-        }
     }
 }

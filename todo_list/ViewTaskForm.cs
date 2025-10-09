@@ -15,10 +15,14 @@ namespace todo_list
     {
         public ViewTaskForm(TodoItem task) 
         {
+            InitializeComponent();
             if (task != null)
             {
-                taskTitleTextBox.Text = task.Text;
-                label1.Text = $"Время создания: {task.CreatedTime:dd.MM.yyyy HH:mm}";
+                taskTitleLabel.Text = task.Title;
+                taskTextBox.Text = task.Text;
+                createdDateLabel.Text = $"Дата создания: {task.CreatedTime:dd.MM.yyyy}";
+                createdTimeLabel.Text = $"Время создания: {task.CreatedTime:HH:mm}";
+                taskDateLabel.Text = $"Запланировано на {task.Date:dd.MM.yyyy} в {task.Date:HH:mm}";
             }
         }
 
@@ -27,21 +31,19 @@ namespace todo_list
             this.Close();
         }
 
-        private void ViewTaskForm_Load(object sender, EventArgs e)
+        Point lastPoint;
+        private void mainPanel_MouseDown(object sender, MouseEventArgs e)
         {
-
+            lastPoint = new Point(e.X, e.Y);
         }
 
-        private void label1_Click(object sender, EventArgs e)
+        private void mainPanel_MouseMove(object sender, MouseEventArgs e)
         {
-
-        }
-
-        public void show_info(TodoItem task)
-        {
-            if (task == null) return;
-            taskTitleTextBox.Text = task.Text;
-            label1.Text = $"Время создания: {task.CreatedTime:dd.MM.yyyy HH:mm}";
+            if (e.Button == MouseButtons.Left)
+            {
+                this.Left += e.X - lastPoint.X;
+                this.Top += e.Y - lastPoint.Y;
+            }
         }
     }
 }

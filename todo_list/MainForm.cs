@@ -45,6 +45,7 @@ namespace todo_list
 
         private void addTaskButton_Click(object sender, EventArgs e)
         {
+            
             AddTaskForm addTaskForm = new AddTaskForm();
 
             if (addTaskForm.ShowDialog() == DialogResult.OK)
@@ -142,16 +143,19 @@ namespace todo_list
         }
 
 
-        private void tasksList_Click(object sender, EventArgs e)
+        private void tasksList_MouseClick(object sender, MouseEventArgs e)
         {
-            //if (tasksList.SelectedItem is TodoItem selectedTask)
-            //{
-            //    selectedTask.IsDone = !selectedTask.IsDone;
-            //    UpdateTaskList();
-            //    SaveTasksToFile();
-            //}
-        }
+            if (e.Button == MouseButtons.Left)
+            {
+                if (tasksList.SelectedItem is TodoItem selectedTask)
+                {
+                    selectedTask.IsDone = !selectedTask.IsDone;
+                    UpdateTaskList();
+                    SaveTasksToFile();
+                }
+            }
 
+        }
         private void datesList_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (datesList.SelectedItem == null)
@@ -210,30 +214,21 @@ namespace todo_list
             closeButton.ForeColor = Color.DarkRed;
         }
 
-        private void tasksList_DoubleClick(object sender, EventArgs e)
+
+        private void tasksList_MouseDown(object sender, MouseEventArgs e)
         {
-
-            if (tasksList.SelectedItem is TodoItem selectedTask)
+            if (e.Button == MouseButtons.Right)
             {
-                ViewTaskForm viewTaskForm = new ViewTaskForm(selectedTask);
-                Console.WriteLine("fff");
-
+                int index = tasksList.IndexFromPoint(e.Location);
+                if (index != ListBox.NoMatches)
                 {
-                    viewTaskForm.ShowDialog();
-                }
-            }
-        }
+                    tasksList.SelectedIndex = index;
 
-        private void tasksList_MouseDoubleClick(object sender, MouseEventArgs e)
-        {
-
-            if (tasksList.SelectedItem is TodoItem selectedTask)
-            {
-                ViewTaskForm viewTaskForm = new ViewTaskForm(selectedTask);
-                Console.WriteLine("fff");
-
-                {
-                    viewTaskForm.ShowDialog();
+                    if (tasksList.SelectedItem is TodoItem selectedTask)
+                    {
+                        ViewTaskForm viewForm = new ViewTaskForm(selectedTask);
+                        viewForm.Show();
+                    }
                 }
             }
         }
@@ -253,10 +248,10 @@ namespace todo_list
             public override string ToString()
             {
                 string isDone = IsDone ? "🗹 " : "▢ ";
-                return $"{isDone} {Date: HH:mm} - {Title}: {Text}... Создан:{CreatedTime: HH:mm}";
+                return $"{isDone} {Date: HH:mm} - {Title}";
             }
         }
 
-
+        
     }
 }
