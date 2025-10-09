@@ -24,12 +24,16 @@ namespace todo_list
 
         public string taskText { get; private set; }
         public DateTime taskDateTime { get; private set; }
+        public DateTime taskCreateTime { get; private set; }
+        public string taskName { get; private set; }
 
 
         private void saveTaskButton_Click(object sender, EventArgs e)
         {
             taskText = taskTextBox.Text;
             taskDateTime = taskDate.Value.Date.AddHours((int)taskHour.Value).AddMinutes((int)taskMinute.Value);
+            taskCreateTime = DateTime.Now;
+            taskName = taskTitleTextBox.Text;
             if (taskText == "")
             {
                 MessageBox.Show("Введите текст задачи");
@@ -65,6 +69,11 @@ namespace todo_list
         }
 
         private void taskHour_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void taskTitleTextBox_TextChanged(object sender, EventArgs e)
         {
 
         }

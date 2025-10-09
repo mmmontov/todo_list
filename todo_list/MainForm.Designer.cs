@@ -47,9 +47,10 @@ namespace todo_list
             this.closeButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.closeButton.Font = new System.Drawing.Font("Calibri", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.closeButton.ForeColor = System.Drawing.Color.Crimson;
-            this.closeButton.Location = new System.Drawing.Point(431, 22);
+            this.closeButton.Location = new System.Drawing.Point(575, 27);
+            this.closeButton.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.closeButton.Name = "closeButton";
-            this.closeButton.Size = new System.Drawing.Size(37, 42);
+            this.closeButton.Size = new System.Drawing.Size(47, 54);
             this.closeButton.TabIndex = 0;
             this.closeButton.Text = "X";
             this.closeButton.Click += new System.EventHandler(this.closeButton_Click);
@@ -61,13 +62,15 @@ namespace todo_list
             this.tasksList.BackColor = System.Drawing.Color.White;
             this.tasksList.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tasksList.FormattingEnabled = true;
-            this.tasksList.ItemHeight = 30;
-            this.tasksList.Location = new System.Drawing.Point(47, 223);
+            this.tasksList.ItemHeight = 36;
+            this.tasksList.Location = new System.Drawing.Point(63, 274);
+            this.tasksList.Margin = new System.Windows.Forms.Padding(4);
             this.tasksList.Name = "tasksList";
-            this.tasksList.Size = new System.Drawing.Size(421, 394);
+            this.tasksList.Size = new System.Drawing.Size(560, 472);
             this.tasksList.TabIndex = 1;
             this.tasksList.Click += new System.EventHandler(this.tasksList_Click);
             this.tasksList.DoubleClick += new System.EventHandler(this.tasksList_DoubleClick);
+            this.tasksList.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.tasksList_MouseDoubleClick);
             // 
             // datesList
             // 
@@ -77,11 +80,12 @@ namespace todo_list
             this.datesList.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.datesList.FormattingEnabled = true;
             this.datesList.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.datesList.ItemHeight = 25;
-            this.datesList.Location = new System.Drawing.Point(47, 98);
+            this.datesList.ItemHeight = 32;
+            this.datesList.Location = new System.Drawing.Point(63, 121);
+            this.datesList.Margin = new System.Windows.Forms.Padding(4);
             this.datesList.Name = "datesList";
             this.datesList.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.datesList.Size = new System.Drawing.Size(421, 102);
+            this.datesList.Size = new System.Drawing.Size(561, 98);
             this.datesList.TabIndex = 3;
             this.datesList.SelectedIndexChanged += new System.EventHandler(this.datesList_SelectedIndexChanged);
             // 
@@ -91,9 +95,10 @@ namespace todo_list
             this.resetDateButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.resetDateButton.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.resetDateButton.ForeColor = System.Drawing.Color.Cornsilk;
-            this.resetDateButton.Location = new System.Drawing.Point(174, 187);
+            this.resetDateButton.Location = new System.Drawing.Point(232, 230);
+            this.resetDateButton.Margin = new System.Windows.Forms.Padding(4);
             this.resetDateButton.Name = "resetDateButton";
-            this.resetDateButton.Size = new System.Drawing.Size(268, 30);
+            this.resetDateButton.Size = new System.Drawing.Size(357, 37);
             this.resetDateButton.TabIndex = 4;
             this.resetDateButton.Text = "Все задачи";
             this.resetDateButton.UseVisualStyleBackColor = false;
@@ -111,7 +116,7 @@ namespace todo_list
             this.mainPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.mainPanel.Location = new System.Drawing.Point(0, 0);
             this.mainPanel.Name = "mainPanel";
-            this.mainPanel.Size = new System.Drawing.Size(508, 662);
+            this.mainPanel.Size = new System.Drawing.Size(677, 815);
             this.mainPanel.TabIndex = 5;
             this.mainPanel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.mainPanel_MouseDown);
             this.mainPanel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.mainPanel_MouseMove);
@@ -119,9 +124,10 @@ namespace todo_list
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(218)))), ((int)(((byte)(218)))));
-            this.panel1.Location = new System.Drawing.Point(0, 79);
+            this.panel1.Location = new System.Drawing.Point(0, 97);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(510, 3);
+            this.panel1.Size = new System.Drawing.Size(680, 4);
             this.panel1.TabIndex = 5;
             // 
             // reloadTasks
@@ -131,9 +137,10 @@ namespace todo_list
             this.reloadTasks.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.reloadTasks.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.reloadTasks.ForeColor = System.Drawing.Color.Cornsilk;
-            this.reloadTasks.Location = new System.Drawing.Point(224, 623);
+            this.reloadTasks.Location = new System.Drawing.Point(299, 767);
+            this.reloadTasks.Margin = new System.Windows.Forms.Padding(4);
             this.reloadTasks.Name = "reloadTasks";
-            this.reloadTasks.Size = new System.Drawing.Size(244, 27);
+            this.reloadTasks.Size = new System.Drawing.Size(325, 33);
             this.reloadTasks.TabIndex = 4;
             this.reloadTasks.Text = "Удалить выполненные задачи";
             this.reloadTasks.UseVisualStyleBackColor = false;
@@ -146,9 +153,10 @@ namespace todo_list
             this.addTaskButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.addTaskButton.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.addTaskButton.ForeColor = System.Drawing.Color.Cornsilk;
-            this.addTaskButton.Location = new System.Drawing.Point(47, 29);
+            this.addTaskButton.Location = new System.Drawing.Point(63, 36);
+            this.addTaskButton.Margin = new System.Windows.Forms.Padding(4);
             this.addTaskButton.Name = "addTaskButton";
-            this.addTaskButton.Size = new System.Drawing.Size(183, 35);
+            this.addTaskButton.Size = new System.Drawing.Size(244, 43);
             this.addTaskButton.TabIndex = 3;
             this.addTaskButton.Text = "Добавить задачу";
             this.addTaskButton.UseVisualStyleBackColor = false;
@@ -156,9 +164,9 @@ namespace todo_list
             // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(508, 662);
+            this.ClientSize = new System.Drawing.Size(677, 815);
             this.Controls.Add(this.tasksList);
             this.Controls.Add(this.mainPanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;

@@ -36,7 +36,7 @@ namespace todo_list
         {
             SaveTasksToFile();
         }
-           
+
 
         private void closeButton_Click(object sender, EventArgs e)
         {
@@ -51,16 +51,25 @@ namespace todo_list
             {
                 string taskText = addTaskForm.taskText;
                 DateTime taskDate = addTaskForm.taskDateTime;
-                AddTaskToList(taskText, taskDate);
+                DateTime taskCreateTime = addTaskForm.taskCreateTime;
+                string taskTitle = addTaskForm.taskName;
+                AddTaskToList(taskText, taskDate, taskCreateTime, taskTitle);
             }
 
             updateDatesList();
         }
 
 
-        public void AddTaskToList(string text, DateTime date)
+        public void AddTaskToList(string text, DateTime date, DateTime createdTime, string title)
         {
-            TodoItem task = new TodoItem { Text = text, Date = date, IsDone = false };
+            TodoItem task = new TodoItem
+            {
+                Text = text,
+                Date = date,
+                IsDone = false,
+                Title = title,
+                CreatedTime = createdTime
+            };
             tasks.Add(task);
             UpdateTaskList();
             SaveTasksToFile();
@@ -100,7 +109,7 @@ namespace todo_list
             }
         }
 
-        
+
 
         public void UpdateTaskList()
         {
@@ -112,7 +121,7 @@ namespace todo_list
 
                 filteredTasks = tasks.Where(t => t.Date.Date == selectedTime).ToList();
             }
-            
+
 
             tasksList.Items.Clear();
             foreach (var task in filteredTasks)
@@ -121,7 +130,7 @@ namespace todo_list
             }
         }
 
-         public void updateDatesList()
+        public void updateDatesList()
         {
             datesList.Items.Clear();
             var dates = tasks.Select(t => t.Date.Date).Distinct().OrderBy(d => d);
@@ -132,19 +141,15 @@ namespace todo_list
             }
         }
 
-        private void tasksList_DoubleClick(object sender, EventArgs e)
-        {
-            
-        }
 
         private void tasksList_Click(object sender, EventArgs e)
         {
-            if (tasksList.SelectedItem is TodoItem selectedTask)
-            {
-                selectedTask.IsDone = !selectedTask.IsDone;
-                UpdateTaskList();
-                SaveTasksToFile();
-            }
+            //if (tasksList.SelectedItem is TodoItem selectedTask)
+            //{
+            //    selectedTask.IsDone = !selectedTask.IsDone;
+            //    UpdateTaskList();
+            //    SaveTasksToFile();
+            //}
         }
 
         private void datesList_SelectedIndexChanged(object sender, EventArgs e)
@@ -204,19 +209,54 @@ namespace todo_list
         {
             closeButton.ForeColor = Color.DarkRed;
         }
-    }
 
-
-    public class TodoItem
-    {
-        public string Text { get; set; }
-        public DateTime Date { get; set; }
-        public bool IsDone { get; set; }
-
-        public override string ToString()
+        private void tasksList_DoubleClick(object sender, EventArgs e)
         {
-            string isDone = IsDone ? "🗹 " : "▢ ";
-            return $"{isDone} {Date: HH:mm} - {Text}";
+
+            if (tasksList.SelectedItem is TodoItem selectedTask)
+            {
+                ViewTaskForm viewTaskForm = new ViewTaskForm(selectedTask);
+                Console.WriteLine("fff");
+
+                {
+                    viewTaskForm.ShowDialog();
+                }
+            }
         }
+
+        private void tasksList_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+
+            if (tasksList.SelectedItem is TodoItem selectedTask)
+            {
+                ViewTaskForm viewTaskForm = new ViewTaskForm(selectedTask);
+                Console.WriteLine("fff");
+
+                {
+                    viewTaskForm.ShowDialog();
+                }
+            }
+        }
+
+
+
+        public class TodoItem
+        {
+            public string Text { get; set; }
+            public DateTime Date { get; set; }
+            public bool IsDone { get; set; }
+            public string Title { get; set; }
+            public DateTime CreatedTime { get; set; }
+
+
+
+            public override string ToString()
+            {
+                string isDone = IsDone ? "🗹 " : "▢ ";
+                return $"{isDone} {Date: HH:mm} - {Title}: {Text}... Создан:{CreatedTime: HH:mm}";
+            }
+        }
+
+
     }
 }
