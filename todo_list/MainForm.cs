@@ -27,7 +27,7 @@ namespace todo_list
         private void MainForm_Load(object sender, EventArgs e)
         {
             LoadTasksFromFile();
-
+            Console.Write("load main form");
             updateDatesList();
 
         }
